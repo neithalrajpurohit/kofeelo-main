@@ -56,11 +56,12 @@ export default function Hero() {
     slidesToShow: 1, // Show one slide at a time
     slidesToScroll: 1, // Scroll one slide at a time
     autoplay: true, // Automatically change slides
-    autoplaySpeed: 4000, // Delay between slides in milliseconds
+    autoplaySpeed: 2000, // Delay between slides in milliseconds
     fade: true, // Use fade transition instead of slide
     cssEase: "cubic-bezier(0.7, 0, 0.3, 1)", // Smoother fade easing
-    pauseOnHover: true, // Pause autoplay when mouse is over the slider
+    pauseOnHover: false, // Pause autoplay when mouse is over the slider
     // Use custom arrows (optional)
+    loop: true,
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     // Customize dot positioning (optional)
