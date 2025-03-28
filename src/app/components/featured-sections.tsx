@@ -77,7 +77,7 @@ export const products = [
 export default function CoffeeProductsPage() {
   const [expandedInfo, setExpandedInfo] = useState(null);
   const route = useRouter();
-  const toggleInfo = (id) => {
+  const toggleInfo = (id: any) => {
     if (expandedInfo === id) {
       setExpandedInfo(null);
     } else {

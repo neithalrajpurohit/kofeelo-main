@@ -82,7 +82,7 @@ export default function CartPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shippingCost = 0; // Example: Free shipping
+  const shippingCost: number = 0; // Example: Free shipping
   const discountAmount = couponApplied ? subtotal * discountPercent : 0;
   const total = subtotal + shippingCost - discountAmount;
 
