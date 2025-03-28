@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export const products = [
   {
     id: 1,
-    name: "SUPER PREMIUM",
+    name: "SPEACIALITY INSTANT",
     tag: "Coffee Strong",
     image: "/assets/goldpack.png",
     backgroundImage: "/assets/beige-bg.png",

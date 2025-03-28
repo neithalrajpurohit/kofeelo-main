@@ -169,13 +169,13 @@ export default function CartPage() {
           <Link href="/" className="hover:text-[#D4B996]">
             Home
           </Link>
-          <Link href="/products" className="hover:text-[#D4B996]">
+          <Link href="/" className="hover:text-[#D4B996]">
             Products
           </Link>
-          <Link href="/about" className="hover:text-[#D4B996]">
+          <Link href="/" className="hover:text-[#D4B996]">
             About us
           </Link>
-          <Link href="/contact" className="hover:text-[#D4B996]">
+          <Link href="/" className="hover:text-[#D4B996]">
             Contact
           </Link>
         </nav>

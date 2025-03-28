@@ -63,7 +63,10 @@ export default function BestSelling() {
   const route = useRouter();
 
   return (
-    <div className="bg-[#f5e6d3] py-16 items-center justify-center flex">
+    <div
+      className="bg-[#f5e6d3] py-16 items-center justify-center flex"
+      id="ourphillosophy"
+    >
       <img
         src={products.image}
         alt="product"

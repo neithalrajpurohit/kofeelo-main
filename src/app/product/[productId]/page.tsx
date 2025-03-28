@@ -4,12 +4,12 @@ import ProductDetail from "../../components/ProductDetails";
 const products = [
   {
     id: 1,
-    name: "Premium",
+    name: "SPECIALITY INSTANT",
     // Making image an array consistently for the slider
     image: [
       "/assets/50gmGold.png",
       "/assets/50gmGold-2.png", // Added placeholder for demo
-      "/assets/50gmGold-3.png", // Added placeholder for demo
+      "/assets/goldpack.png", // Added placeholder for demo
     ],
     // Using lowercase 'price' for consistency if possible, otherwise adapt component
     price: 85, // Assuming this is the default price for the default label
@@ -24,7 +24,7 @@ const products = [
     quantity: [
       { label: "1.1gm/pcs (50pcs)", images: "/assets/2GmGold.png", price: 100 }, // Use lowercase price
       { label: "50gm", images: "/assets/50gmGold.png", price: 85 },
-      { label: "100gm", images: "/assets/100gmGold.png", price: 169 },
+      { label: "100gm", images: "/assets/goldpack.png", price: 169 },
     ],
     // Add missing fields (optional, provide defaults otherwise)
     rating: 4.5,

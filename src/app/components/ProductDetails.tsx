@@ -335,7 +335,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
           <span className="inline-block self-start bg-brand-offer-btn text-white text-sm font-medium px-4 py-1 rounded-full mb-3">
             {product.category || product.name}
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-1">
+          <h1 className="text-xs md:text-4xl font-bold text-zinc-900 mb-1">
             {product.name}
           </h1>
           <StarRating
