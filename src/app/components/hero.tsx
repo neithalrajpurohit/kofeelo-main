@@ -16,29 +16,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // --- Optional: Custom Arrows (Example - same as before) ---
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  // Added !right-5 for Tailwind specificity, and z-10
-  return (
-    <div
-      className={`${className} !right-5 z-10`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
+// function SampleNextArrow(props) {
+//   const { className, style, onClick } = props;
+//   // Added !right-5 for Tailwind specificity, and z-10
+//   return (
+//     <div
+//       className={`${className} !right-5 z-10`}
+//       style={{ ...style, display: "block" }}
+//       onClick={onClick}
+//     />
+//   );
+// }
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  // Added !left-5 for Tailwind specificity, and z-10
-  return (
-    <div
-      className={`${className} !left-5 z-10`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
+// function SamplePrevArrow(props) {
+//   const { className, style, onClick } = props;
+//   // Added !left-5 for Tailwind specificity, and z-10
+//   return (
+//     <div
+//       className={`${className} !left-5 z-10`}
+//       style={{ ...style, display: "block" }}
+//       onClick={onClick}
+//     />
+//   );
+// }
 // --- End Optional Custom Arrows ---
 
 export default function Hero() {
@@ -64,7 +64,7 @@ export default function Hero() {
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />,
     // Customize dot positioning (optional)
-    appendDots: (dots) => (
+    appendDots: (dots: any) => (
       <div
         style={{
           position: "absolute",
@@ -79,7 +79,7 @@ export default function Hero() {
         </ul>
       </div>
     ),
-    customPaging: (i) => (
+    customPaging: (i: any) => (
       <div
         style={{
           width: "10px",
