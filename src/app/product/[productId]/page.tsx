@@ -121,12 +121,12 @@ const products = [
       { icon: "/assets/beans.png", label: "Finest Beans" },
       { icon: "/assets/handpicked.png", label: "Handpicked" },
     ],
-    // image: [
-    //   // Ensure image is an array
-    //   "/assets/50gmCopper.png",
-    //   "/assets/50gmCopper-2.png", // Placeholder
-    //   "/assets/50gmCopper-3.png", // Placeholder
-    // ],
+    image: [
+      // Ensure image is an array
+      "/assets/50gmCopper.png",
+      "/assets/50gmCopper-2.png", // Placeholder
+      "/assets/50gmCopper-3.png", // Placeholder
+    ],
     description:
       "Smooth, Bold & Refreshing!Expertly crafted from the finest beans and slow-brewed for a rich, smooth flavour with lower acidity. Enjoy it black, with milk, or your way – the perfect refreshing caffeine boost!",
     quantity: [{ label: "20gm", images: "/assets/coldbrew.png", price: 85 }],
@@ -146,12 +146,12 @@ const products = [
       // { icon: "/assets/beans.png", label: "Finest Beans" },
       // { icon: "/assets/handpicked.png", label: "Handpicked" },
     ],
-    // image: [
-    //   // Ensure image is an array
-    //   "/assets/50gmCopper.png",
-    //   "/assets/50gmCopper-2.png", // Placeholder
-    //   "/assets/50gmCopper-3.png", // Placeholder
-    // ],
+    image: [
+      // Ensure image is an array
+      "/assets/50gmCopper.png",
+      "/assets/50gmCopper-2.png", // Placeholder
+      "/assets/50gmCopper-3.png", // Placeholder
+    ],
     description:
       "Nitrogen-infused coffee is a cold brew infused with nitrogen gas, creating a smooth, creamy texture and a rich, velvety mouthfeel. It has a naturally sweet taste with a cascading effect similar to draft beer.The perfect refreshing caffeine boost!",
     quantity: [{ label: "20ml", images: "/assets/nocinside.png", price: 300 }],

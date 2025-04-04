@@ -30,7 +30,7 @@ export default function Hero() {
     pauseOnHover: false,
     loop: true,
     arrows: true, // Show navigation arrows
-    appendDots: (dots) => (
+    appendDots: (dots: any) => (
       <div
         style={{
           position: "absolute",
@@ -44,7 +44,7 @@ export default function Hero() {
         </ul>
       </div>
     ),
-    customPaging: (i) => (
+    customPaging: () => (
       <div
         style={{
           width: "10px",
