@@ -23,7 +23,7 @@ export default function CartPage() {
     {
       id: "1",
       name: "SUPER PREMIUM",
-      image: "/assets/goldpack.png",
+      image: "/assets/speciality.jpg",
       price: 89,
       rating: 4,
       reviews: 10,
@@ -31,8 +31,8 @@ export default function CartPage() {
     },
     {
       id: "2",
-      name: "COFFEE STRONG",
-      image: "/assets/coffeestrong.png",
+      name: "EXTRA BOLD",
+      image: "/assets/realextrabold.jpg",
       price: 89,
       rating: 4,
       reviews: 10,
@@ -44,7 +44,7 @@ export default function CartPage() {
     {
       id: "3",
       name: "SUPER PREMIUM",
-      image: "/assets/goldpack.png",
+      image: "/assets/speciality50gm.png",
       price: 89,
       originalPrice: 100,
       rating: 4,

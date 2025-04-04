@@ -29,6 +29,9 @@ export default function Nav() {
         <Link href="#contact" className="hover:text-[#c4a484] ">
           Contact
         </Link>
+        <Link href="/cart" className="hover:text-brand-dark">
+          Cart
+        </Link>
 
         {/* <Link href="/locations" className="hover:text-[#c4a484]">
           Locations
