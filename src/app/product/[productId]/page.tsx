@@ -102,8 +102,12 @@ const products = [
         images: "/assets/2Gmcopper.png",
         price: 100,
       },
-      { label: "50gm", images: "/assets/extraBold50gram.png", price: 85 },
-      { label: "100gm", images: "/assets/newextrabold100gm.png", price: 169 },
+      { label: "50gm", images: "/assets/ExtraBold50gramFront.png", price: 85 },
+      {
+        label: "100gm",
+        images: "/assets/ExtraBold100gramfront.png",
+        price: 169,
+      },
     ],
     // Add missing fields
     rating: 5,

@@ -32,7 +32,7 @@ export const products = [
     id: 3,
     name: "EXTRA BOLD",
     tag: "Coffee Strong",
-    image: "/assets/realextrabold.jpg",
+    image: "/assets/newExtraBold.jpg",
     backgroundImage: "/assets/white-bg.png",
     description:
       "Taste Premium, Smell Local! Experience the rich flavor of our Instant Pure Granulated Coffee, crafted from the finest beans, hand...",
@@ -43,7 +43,7 @@ export const products = [
     id: 4,
     name: "COLD BREW",
     tag: "COLD BREW",
-    image: "/assets/coldbrew.jpg",
+    image: "/assets/newcoldbrew.jpg",
     backgroundImage: "/assets/white-bg.png",
     description:
       "Smooth, Bold & Refreshing!Expertly crafted from the finest beans and slow-brewed for a rich, smooth flavour with lower acidity. Enjoy it black, with milk, or your way – the perfect refreshing caffeine boost!",
