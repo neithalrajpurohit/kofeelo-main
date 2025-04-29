@@ -8,6 +8,7 @@ import Slider from "react-slick";
 // Import slick carousel CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Video } from "lucide-react";
 
 export default function Hero() {
   const images = [
@@ -59,8 +60,8 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative h-[600px] text-white overflow-hidden">
-      <Slider {...settings}>
+    <div className="relative h-[670px] text-white overflow-hidden">
+      {/* <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className="relative h-[600px] w-full">
             <Image
@@ -73,7 +74,15 @@ export default function Hero() {
             />
           </div>
         ))}
-      </Slider>
+      </Slider> */}
+      <video
+        className="w-full h-full object-cover"
+        src={"/Videos/bannervideo.mp4"}
+        autoPlay
+        playsInline
+        loop
+        muted
+      />
     </div>
   );
 }
