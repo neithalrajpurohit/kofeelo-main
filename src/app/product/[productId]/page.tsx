@@ -61,8 +61,8 @@ const products = [
       "Wake Up to a Chicory Twist! Rich, Strong , and infused with Chicory Goodness,Try our Instant Strong Chicory Coffee for a robust, well-balanced brew.This instant coffee has a sophisticated flavor that is healthy and smooth ,thanks to the natural richness of chicory",
     quantity: [
       {
-        label: "1.1gm/pcs (50pcs)",
-        images: "/assets/2GmSilver.png",
+        label: "8gm",
+        images: "/assets/8GmSilver.png",
         price: 100,
       },
       { label: "50gm", images: "/assets/50gmSilver.png", price: 85 },
@@ -98,8 +98,8 @@ const products = [
       "A rich and bold mix of coffee and chicory that delivers adeep,satisfying strength. Expertly designed for those who seek apowerful,full-bodied coffee experience. Embrace instant boldness with every sip.",
     quantity: [
       {
-        label: "1.1gm/pcs (50pcs)",
-        images: "/assets/2Gmcopper.png",
+        label: "8gm",
+        images: "/assets/extrabold8gm.png",
         price: 100,
       },
       { label: "50gm", images: "/assets/ExtraBold50gramFront.png", price: 85 },

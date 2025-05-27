@@ -262,7 +262,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   return (
     <div className="bg-brand-bg min-h-screen font-sans">
       {/* --- Header --- */}
-      <header className="bg-brand-nav shadow-sm sticky top-0 z-20">
+      <header className="bg-[#c4a484] shadow-sm sticky top-0 z-20">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           {/* Logo */}
           <div className="text-xl font-bold text-brand-dark">
@@ -275,7 +275,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             />
           </div>
           {/* Nav */}
-          <nav className="hidden md:flex space-x-6 text-gray-700">
+          <nav className="hidden md:flex space-x-6 text-black">
             <Link href="/" className="hover:text-brand-dark">
               Home
             </Link>

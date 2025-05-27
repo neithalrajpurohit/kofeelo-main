@@ -62,7 +62,7 @@ export default function CartPage() {
     {
       id: "5",
       name: "SUPER PREMIUM",
-      image: "/assets/redcoffee.png",
+      image: "/assets/speciality1gm.png",
       price: 89,
       originalPrice: 100,
       rating: 4,

@@ -23,7 +23,7 @@ export default function Nav() {
         <Link href="#products" className="hover:text-[#c4a484]">
           Products
         </Link>
-        <Link href="#ourphillosophy" className="hover:text-[#c4a484] ">
+        <Link href="/aboutus" className="hover:text-[#c4a484] ">
           About Us
         </Link>
         <Link href="#contact" className="hover:text-[#c4a484] ">

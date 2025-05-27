@@ -6,7 +6,7 @@ export default function Newsletter() {
     id: 1,
     name: "Shalima Hayden",
     avatar: "/placeholder.svg?height=50&width=50",
-    image: "/assets/united.jpg",
+    image: "/assets/scan.jpg",
     text: "I Have Trusted Koffelo Coffee For Many Years. Really Amazing To See The Combination Was Very Good. One Thing Is To Serve Extraordinary Coffee With Caffeine. I Will Order From Caffeine For Any Of My Coffee Needs.",
     rating: 5,
   };
