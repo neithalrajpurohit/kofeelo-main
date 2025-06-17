@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-
+import Link from "next/link";
+import { SiX } from "react-icons/si";
 export default function Footer() {
   return (
     <footer id="contact" className="bg-[#1a1a1a] text-white py-12">
@@ -7,9 +8,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-3xl font-bold mb-4">Koffelo</h3>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-2">
               Enjoy Better And Better Quality Coffee With Caffeine.
             </p>
+            <div className="space-y-2">
+              <div></div>
+              <div></div>
+              <div></div>
+              <Link
+                href="/aboutus#terms"
+                className="text-xl pt-[53px] font-semibold underline block"
+              >
+                Terms & Conditions
+              </Link>
+            </div>
           </div>
 
           <div>
@@ -25,10 +37,45 @@ export default function Footer() {
           <div>
             <h4 className="text-xl font-semibold mb-4">Follow Us</h4>
             <div className="flex gap-4">
-              <Facebook className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Instagram className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Twitter className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
-              <Youtube className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
+              <a
+                href="https://www.facebook.com/koffelo/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Facebook className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
+              </a>
+              <a
+                href="https://www.instagram.com/koffelo_brew/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
+              </a>
+
+              {/* <a
+                href="https://x.com/i/flow/login?redirect_after_login=%2Fkoffelo_brew"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
+              </a> */}
+              <div className="flex gap-4">
+                {/* Other icons */}
+                <a
+                  href="https://x.com/i/flow/login?redirect_after_login=%2Fkoffelo_brew"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiX className="h-5 w-6 text-gray-400 hover:text-white cursor-pointer" />
+                </a>
+              </div>
+              <a
+                href="https://www.youtube.com/@koffelo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Youtube className="h-6 w-6 text-gray-400 hover:text-white cursor-pointer" />
+              </a>
             </div>
           </div>
         </div>

@@ -8,9 +8,8 @@ const circeRoundRegular = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Caffeine - Discover The Art of Perfect Coffee",
-  description:
-    "Experience the rich and bold flavors of our signature coffee blends.",
+  title: "Koffelo - United by Coffee",
+  description: "Crafted with care and driven by purpose.",
 };
 
 export default function RootLayout({

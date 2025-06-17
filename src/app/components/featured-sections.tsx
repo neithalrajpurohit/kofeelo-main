@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export const products = [
   {
@@ -12,7 +11,7 @@ export const products = [
     image: "/assets/speciality.jpg",
     backgroundImage: "/assets/beige-bg.png",
     description:
-      "Taste Premium, Smell Local! Experience the rich flavor of our Instant Pure Granulated Coffee, crafted from the finest beans, hand...",
+      "Made from 100% Robusta Beans Perfect for Hot ,Cold & Espresso",
     price: 89,
     originalPrice: 100,
   },
@@ -22,8 +21,7 @@ export const products = [
     tag: "Coffee Strong",
     image: "/assets/realCoffeStrong.jpg",
     backgroundImage: "/assets/blue-bg.png",
-    description:
-      "Taste Premium, Smell Local! Experience the rich flavor of our Instant Pure Granulated Coffee, crafted from the finest beans, hand...",
+    description: "Instant Strong Granulated Coffee Chicory Mix",
     price: 89,
     originalPrice: 100,
   },
@@ -33,8 +31,7 @@ export const products = [
     tag: "Coffee Strong",
     image: "/assets/newExtraBold.jpg",
     backgroundImage: "/assets/white-bg.png",
-    description:
-      "Taste Premium, Smell Local! Experience the rich flavor of our Instant Pure Granulated Coffee, crafted from the finest beans, hand...",
+    description: "Instant Extra Bold Coffee Chicory Mix",
     price: 89,
     originalPrice: 100,
   },
@@ -44,9 +41,7 @@ export const products = [
     tag: "COLD BREW",
     image: "/assets/newcoldbrew.jpg",
     backgroundImage: "/assets/white-bg.png",
-    description:
-      "Smooth, Bold & Refreshing!Expertly crafted from the finest beans and slow-brewed for a rich, smooth flavour with lower acidity.",
-    //  Enjoy it black, with milk, or your way – the perfect refreshing caffeine boost!",
+    description: "Smooth & Refreshing!",
     price: 89,
     originalPrice: 100,
   },
@@ -56,165 +51,209 @@ export const products = [
     tag: "NOC",
     image: "/assets/noc.jpg",
     backgroundImage: "/assets/white-bg.png",
-    description:
-      "Nitrogen-infused coffee is a cold brew infused with nitrogen gas, creating a smooth, creamy texture and a rich, velvety mouthfeel.",
-    //  It has a naturally sweet taste with a cascading effect similar to draft beer.The perfect refreshing caffeine boost!",
+    description: "Fuel Up with Nitro Power Brewd slow. Hits Fast",
     price: 300,
     originalPrice: 100,
   },
 ];
 
 export default function CoffeeProductsPage() {
-  const [expandedInfo, setExpandedInfo] = useState<number | null>(null);
+  const [expandedInfo, setExpandedInfo] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const router = useRouter();
+  // Create extended array for infinite scroll
+  const extendedProducts = [...products, ...products, ...products];
 
-  const toggleInfo = (id: number) => {
-    console.log("Clicked product ID:", id); // Debug log
-    console.log("Current expanded:", expandedInfo); // Debug log
+  // Auto-slide effect
+  useEffect(() => {
+    if (!isAutoSliding) return;
+
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setExpandedInfo(null);
+
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % products.length;
+        return nextIndex;
+      });
+
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 500);
+    }, 3000); // Slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoSliding, currentIndex]);
+
+  const handleSlideTransition = (direction: any) => {
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+    setExpandedInfo(null); // Close any expanded info when sliding
+
+    setCurrentIndex((prevIndex) => {
+      let nextIndex = prevIndex + direction;
+
+      // Handle infinite loop
+      if (nextIndex >= products.length) {
+        nextIndex = 0;
+      } else if (nextIndex < 0) {
+        nextIndex = products.length - 1;
+      }
+
+      return nextIndex;
+    });
+
+    // Reset transition state after animation completes
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
+  };
+
+  const toggleInfo = (id: any) => {
     setExpandedInfo(expandedInfo === id ? null : id);
   };
 
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + products.length) % products.length
-    );
+    setIsAutoSliding(false);
+    handleSlideTransition(-1);
+    setTimeout(() => setIsAutoSliding(true), 8000);
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
+    setIsAutoSliding(false);
+    handleSlideTransition(1);
+    setTimeout(() => setIsAutoSliding(true), 8000);
   };
 
-  // Calculate indices for the 3 visible products, handling wrap-around
-  const visibleProductIndices = [
-    currentIndex % products.length,
-    (currentIndex + 1) % products.length,
-    (currentIndex + 2) % products.length,
-  ];
-  const visibleProducts = visibleProductIndices.map((index) => products[index]);
+  const handleDotClick = (index: any) => {
+    if (isTransitioning) return;
+    setIsAutoSliding(false);
+    setIsTransitioning(true);
+    setExpandedInfo(null);
+    setCurrentIndex(index);
+    setTimeout(() => {
+      setIsTransitioning(false);
+      setIsAutoSliding(true);
+    }, 500);
+  };
 
-  console.log(
-    "Visible products:",
-    visibleProducts.map((p) => ({ id: p.id, name: p.name }))
-  ); // Debug log
-  console.log("Current expanded ID:", expandedInfo); // Debug log
+  // Calculate the transform value for smooth sliding
+  const cardWidth = 320; // 80 * 4 (w-80 = 320px)
+  const gap = 25; // gap-6 = 24px
+  const totalCardWidth = cardWidth + gap;
+
+  // Start from the middle set to avoid showing seams
+  const baseOffset = products.length * totalCardWidth;
+  const currentOffset = currentIndex * totalCardWidth;
+  const transformValue = -(baseOffset + currentOffset);
 
   return (
     <div
-      className="bg-[#f5e6d3] min-h-screen py-8 flex flex-col items-center"
+      className="bg-gradient-to-br from-[#f5e6d3] to-[#f0dcc7] min-h-screen py-8 flex flex-col items-center"
       id="products"
     >
-      <h2 className="text-3xl font-bold mb-8 text-[#3a2a1a]">Products</h2>
+      <h2 className="text-4xl font-bold mb-8 text-[#3a2a1a] text-center">
+        Our Premium Coffee Collection
+      </h2>
+
       {/* Container for Carousel and Arrows */}
-      <div className="w-full max-w-6xl mx-auto px-4 relative">
-        {/* Left Arrow - Adjusted position */}
+      <div className="flex justify-center items-center w-full px-4 relative">
+        {/* Left Arrow - Positioned close to carousel */}
         <button
           onClick={handlePrev}
-          className="absolute -left-8 top-1/2 -translate-y-1/2 z-10 bg-[#42281e] bg-opacity-60 hover:bg-opacity-80 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-[#2a1a12] transition-all"
+          disabled={isTransitioning}
+          className="mr-4 z-20 bg-[#f0e0c8]/90 backdrop-blur-sm hover:bg-white text-[#42281e] rounded-full w-12 h-12 flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-[#42281e]/10 hover:border-[#42281e]/30 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-110"
           aria-label="Previous products"
-          disabled={products.length <= 3}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-5 h-5"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M15 19l-7-7 7-7"
             />
           </svg>
         </button>
-        {/* Right Arrow - Adjusted position */}
-        <button
-          onClick={handleNext}
-          className="absolute -right-8 top-1/2 -translate-y-1/2 z-10 bg-[#42281e] bg-opacity-60 hover:bg-opacity-80 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-[#2a1a12] transition-all"
-          aria-label="Next products"
-          disabled={products.length <= 3}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+
         {/* Carousel Viewport */}
-        <div className="overflow-hidden">
-          {/* Container for the cards */}
-          <div className="flex justify-center gap-6 items-start">
-            {/* Map over only the calculated visible products */}
-            {visibleProducts.map((product, cardIndex) => {
-              const isExpanded = expandedInfo === product.id;
-              console.log(
-                `Card ${cardIndex} - Product ID: ${product.id}, IsExpanded: ${isExpanded}`
-              ); // Debug log
+        <div
+          className="overflow-hidden rounded-2xl shadow-2xl bg-white/10 backdrop-blur-sm p-5"
+          style={{ width: `${3 * cardWidth + 3 * gap}px` }}
+        >
+          {/* Container for the cards with smooth sliding animation */}
+          <div
+            className={`flex gap-6 items-stretch transition-transform duration-300 ease-out ${
+              isTransitioning ? "transform-gpu" : ""
+            }`}
+            style={{
+              transform: `translateX(${transformValue}px)`,
+              width: `${extendedProducts.length * totalCardWidth}px`,
+            }}
+          >
+            {/* Render extended products array for infinite scroll */}
+            {extendedProducts.map((product, index) => {
+              const actualProductId = product.id;
+              const isExpanded = expandedInfo === actualProductId;
 
               return (
                 <div
-                  key={`card-${cardIndex}-product-${product.id}`}
-                  className="border border-black rounded-xl overflow-hidden relative flex flex-col bg-[#f0e0c8] group w-80 flex-shrink-0 self-start"
+                  onClick={() => router.push(`/product/${product.id}`)}
+                  key={`product-${product.id}-${index}`}
+                  className={`border-2 border-[#42281e]/20 rounded-2xl overflow-hidden relative flex flex-col bg-[#f0e0c8] group w-80 flex-shrink-0 h-[600px] transition-all duration-500 shadow-lg hover:shadow-2xl hover:scale-105 transform-gpu ${
+                    isTransitioning ? "blur-[0.5px]" : ""
+                  }`}
+                  style={{
+                    boxShadow: "0 10px 40px rgba(66, 40, 30, 0.15)",
+                  }}
                 >
-                  {/* Debug info - remove this after testing */}
-                  {/* <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded z-50">
-                    ID: {product.id}
-                  </div> */}
                   {/* Card Image */}
-                  <div className="relative aspect-square overflow-hidden">
-                    <Image
+                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#f5e6d3] to-[#e8d5c0] flex-shrink-0">
+                    <img
                       src={product.image}
                       alt={product.name}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      className="transition-transform duration-300 group-hover:scale-105"
-                      sizes="320px"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
+
                   {/* Card Content */}
-                  <div className="p-3 md:p-4 flex flex-col flex-grow">
+                  <div className="p-5 flex flex-col flex-grow min-h-0">
                     {/* Tag */}
-                    <div className="mb-2">
-                      <span className="inline-block bg-[#f8f3e6] text-[#5a4a3a] px-3 py-1 rounded-full text-xs md:text-sm border border-[#d8c8b0]">
+                    {/* <div className="mb-3 flex-shrink-0">
+                      <span className="inline-block bg-gradient-to-r from-[#f8f3e6] to-[#f0e5d8] text-[#5a4a3a] px-4 py-1 rounded-full text-sm border border-[#d8c8b0] font-medium shadow-sm">
                         {product.tag}
                       </span>
-                    </div>
+                    </div> */}
+
                     {/* Name */}
-                    <h3 className="text-lg md:text-xl font-bold text-[#3a2a1a] mb-1 md:mb-2">
+                    <h3 className="text-xl font-bold text-[#3a2a1a] mb-3 group-hover:text-[#42281e] transition-colors flex-shrink-0">
                       {product.name}
                     </h3>
-                    {/* Description */}
-                    <p className="text-sm text-[#5a4a3a] mb-3">
-                      {product.description}
-                    </p>
 
-                    {/* Spacer */}
-                    <div className="flex-grow"></div>
+                    {/* Description */}
+                    <p className="text-lg text-[#5a4a3a] mb-4 flex-grow overflow-hidden">
+                      <span className="line-clamp-3">
+                        {product.description}
+                      </span>
+                    </p>
 
                     {/* More Info Button */}
                     <button
-                      onClick={() => {
-                        console.log(`Button clicked for product ${product.id}`); // Debug log
-                        toggleInfo(product.id);
-                      }}
-                      className="flex items-center text-[#8a7a6a] mb-3 border border-[#d8c8b0] px-3 py-1 rounded-md text-sm self-start hover:bg-[#e8d8c0] transition-colors"
+                      onClick={() => toggleInfo(actualProductId)}
+                      className="flex items-center text-[#8a7a6a] mb-4 border-2 border-[#d8c8b0] px-4 py-2 rounded-lg text-sm self-start hover:bg-[#e8d8c0] hover:border-[#c8b8a0] transition-all duration-300 font-medium group/btn flex-shrink-0"
                     >
                       <span>MORE INFO</span>
-                      {/* <span>MORE INFO (ID: {product.id})</span> */}
-
                       <svg
-                        className={`ml-2 w-4 h-4 transition-transform ${
+                        className={`ml-2 w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 ${
                           isExpanded ? "rotate-180" : ""
                         }`}
                         fill="none"
@@ -232,45 +271,68 @@ export default function CoffeeProductsPage() {
                     </button>
 
                     {/* Expanded Info Panel */}
-                    {isExpanded && (
-                      <div className="bg-[#e8d8c0] p-2 md:p-3 rounded-md mb-3 text-xs md:text-sm text-[#5a4a3a]">
-                        <p>
-                          {/* More detailed information about {product.name} (ID:{" "}
-                          {product.id})... */}
-                          More detailed information about {product.name}...
-                          {/* Full product description and details would go here.
-                          Information about origin, flavor profile, brewing
-                          recommendations, etc. */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 flex-shrink-0 ${
+                        isExpanded
+                          ? "max-h-32 opacity-100 mb-4"
+                          : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="bg-gradient-to-r from-[#e8d8c0] to-[#f0e0c8] p-4 rounded-lg text-sm text-[#5a4a3a] border border-[#d8c8b0]">
+                        <p>More detailed information about {product.name}...</p>
+                        <p className="mt-2 text-xs">
+                          Perfect for morning brew and afternoon picks!
                         </p>
                       </div>
-                    )}
+                    </div>
 
                     {/* Add to Cart Button */}
                     <button
-                      onClick={() => router.push(`/product/${product.id}`)}
-                      className="w-full bg-[#42281e] text-white py-2 md:py-3 font-medium rounded-md hover:bg-[#2a1a12] transition-colors flex justify-between items-center px-3 md:px-4 text-sm md:text-base"
+                      onClick={() => {
+                        router.push(`/product/${product.id}`);
+                      }}
+                      className="w-full bg-gradient-to-r from-[#42281e] to-[#2a1a12] text-white py-3 font-semibold rounded-xl hover:from-[#2a1a12] hover:to-[#1a0f08] transition-all duration-300 flex justify-between items-center px-4 text-base shadow-lg hover:shadow-xl transform hover:scale-105 flex-shrink-0 mt-auto"
                     >
-                      <span>Add to Cart </span>
+                      <span>Add to Cart</span>
                       <div className="flex items-center">
-                        <span className="text-base md:text-lg">
+                        <span className="text-lg font-bold">
                           ₹{product.price}
                         </span>
-                        <span className="text-xs md:text-sm text-gray-400 line-through ml-1 md:ml-2">
+                        <span className="text-sm text-gray-300 line-through ml-2">
                           ₹{product.originalPrice}
                         </span>
                       </div>
                     </button>
-                  </div>{" "}
-                  {/* End Card Content */}
-                </div> // End Card
+                  </div>
+                </div>
               );
             })}
-          </div>{" "}
-          {/* End Card Container */}
-        </div>{" "}
-        {/* End Carousel Viewport */}
-      </div>{" "}
-      {/* End Container for Carousel and Arrows */}
+          </div>
+        </div>
+
+        {/* Right Arrow - Positioned close to carousel */}
+        <button
+          onClick={handleNext}
+          disabled={isTransitioning}
+          className="ml-4 z-20 bg-white/90 backdrop-blur-sm hover:bg-white text-[#42281e] rounded-full w-12 h-12 flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-[#42281e]/10 hover:border-[#42281e]/30 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-110"
+          aria-label="Next products"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }

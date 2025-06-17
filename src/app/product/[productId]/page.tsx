@@ -20,7 +20,10 @@ const products = [
       { icon: "/assets/handpicked.png", label: "Handpicked" },
     ],
     description:
-      "Taste Premium ,Smell Local! Experience the rich flavor of our instant Pure Granulated Coffee,crafted from the finest beans,handpicked from renowned Indian coffee regions.Every cup delivers exceptional quality.Enjoy coffee in its purrst form ",
+      "A Cup of Pure Indulgence Savor the velvety-smooth richness of our pure Speciaility Instant Coffee,crafted from handpicked beans of India's most celebrated coffee regions.Each sip delivers a creamy body , a refreshing finish, and an aroma that lingers-offering you an effortlessly luxurious coffee experience. ",
+    Points:
+      "Crafted from 100% Indian-origin Robusta beans,perfect for hot,cold,and espresso preparations.Indulge in velvety, creamy-smooth flavors of specialty coffee effortlessly instant  for a truly luxurious coffee experience ",
+
     quantity: [
       {
         label: "1.1gm/pcs (50pcs)",
@@ -58,7 +61,7 @@ const products = [
       { icon: "/assets/handpicked.png", label: "Handpicked" },
     ],
     description:
-      "Wake Up to a Chicory Twist! Rich, Strong , and infused with Chicory Goodness,Try our Instant Strong Chicory Coffee for a robust, well-balanced brew.This instant coffee has a sophisticated flavor that is healthy and smooth ,thanks to the natural richness of chicory",
+      "Wake Up to a Chicory Twist! Rich, Strong , and infused with Chicory Goodness,Try our Instant Strong Chicory Coffee for a robust, well-balanced brew.Koffelo has a sophisticated flavor that is healthy and smooth ,thanks to the natural richness of Chicory.",
     quantity: [
       {
         label: "8gm",
@@ -95,7 +98,7 @@ const products = [
       "/assets/50gmCopper-3.png", // Placeholder
     ],
     description:
-      "A rich and bold mix of coffee and chicory that delivers adeep,satisfying strength. Expertly designed for those who seek apowerful,full-bodied coffee experience. Embrace instant boldness with every sip.",
+      "A rich and bold mix of coffee and chicory that delivers a deep,satisfying strength. Expertly designed for those who seek a powerful,full-bodied coffee experience. Embrace instant boldness with every sip.",
     quantity: [
       {
         label: "8gm",
@@ -132,7 +135,7 @@ const products = [
       "/assets/50gmCopper-3.png", // Placeholder
     ],
     description:
-      "Smooth, Bold & Refreshing!Expertly crafted from the finest beans and slow-brewed for a rich, smooth flavour with lower acidity. Enjoy it black, with milk, or your way – the perfect refreshing caffeine boost!",
+      "Smooth & Refreshing! Experience the deep ,rich flaovr of cold brew in seconds.Koffelo Cold Brew Instant Coffee is crafted from 100% premium Arabica beans using a slow cold brewing process for a naturally smooth,low-acidity taste. Freeze-dried to lock in freshness, just mix with cold or hot water / Milk-no brewing,no waiting.",
     quantity: [{ label: "20gm", images: "/assets/coldbrew.png", price: 85 }],
     // Add missing fields
     rating: 5,
@@ -157,8 +160,8 @@ const products = [
       "/assets/50gmCopper-3.png", // Placeholder
     ],
     description:
-      "Nitrogen-infused coffee is a cold brew infused with nitrogen gas, creating a smooth, creamy texture and a rich, velvety mouthfeel. It has a naturally sweet taste with a cascading effect similar to draft beer.The perfect refreshing caffeine boost!",
-    quantity: [{ label: "20ml", images: "/assets/nocinside.png", price: 300 }],
+      "A cosmic blend of Brazilian & Ethiopian roasts. Our Nitro Cold Brew delivers bold coffee flavor, naturally amped with smooth nitrogen infusion-no crash,no sugar, just clean energy.Take it to the gym, office, or your next hustle. Cold,creamy, and ready when you are.",
+    quantity: [{ label: "20ml", images: "/assets/noc.png", price: 300 }],
     // Add missing fields
     rating: 5,
     reviewCount: 25,
@@ -167,6 +170,13 @@ const products = [
   },
 ];
 // --- End Product Data ---
+export async function generateStaticParams() {
+  // Replace with your real product IDs (or fetch them from a CMS or DB)
+
+  return products.map((product) => ({
+    productId: product.id.toString(),
+  }));
+}
 
 export default function ProductPage({
   params,

@@ -1,13 +1,11 @@
 import Link from "next/link";
 
-import Image from "next/image";
-
 export default function Nav() {
   return (
     <nav className="flex items-center justify-between p-4 bg-[#c4a484] text-black">
       <Link href="/" className="text-2xl font-bold">
         <div className="">
-          <Image
+          <img
             src="/assets/logo.png"
             alt="logo"
             width={80}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -21,8 +21,14 @@ const AboutUsPage = () => {
     setActiveSection(activeSection === section ? null : section);
   };
 
-  const PolicySection = ({ title, icon: Icon, children, sectionKey }: any) => (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+  const PolicySection = ({
+    title,
+    icon: Icon,
+    children,
+    sectionKey,
+    id,
+  }: any) => (
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-6" id={id}>
       <button
         onClick={() => toggleSection(sectionKey)}
         className="w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 transition-colors"
@@ -52,7 +58,7 @@ const AboutUsPage = () => {
         <header className=" bg-[#c4a484] shadow-sm py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center sticky top-0 z-10 border-b border-[#D4B996]/50">
           <Link href="/">
             {/* Use your actual logo */}
-            <Image
+            <img
               src="/assets/logo.png"
               alt="Koffelo Logo"
               width={100}
@@ -296,6 +302,7 @@ const AboutUsPage = () => {
             title="Payment Methods"
             icon={CreditCard}
             sectionKey="payments"
+            id="terms"
           >
             <div className="space-y-4">
               <div>
@@ -348,6 +355,7 @@ const AboutUsPage = () => {
 
           <PolicySection
             title="Returns & Exchanges"
+            // id="terms"
             icon={RotateCcw}
             sectionKey="returns"
           >
@@ -404,6 +412,7 @@ const AboutUsPage = () => {
           <PolicySection
             title="Refunds & Cancellations"
             icon={Phone}
+            // id="terms"
             sectionKey="refunds"
           >
             <div className="grid md:grid-cols-2 gap-6">
@@ -445,6 +454,7 @@ const AboutUsPage = () => {
           <PolicySection
             title="Terms & Conditions"
             icon={Shield}
+            // id="terms"
             sectionKey="terms"
           >
             <div className="space-y-6">

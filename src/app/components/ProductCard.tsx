@@ -17,12 +17,10 @@ export default function ProductCard({ product, onSelect }: any) {
       </CardHeader>
       <CardContent>
         <div className="relative h-48 mb-4">
-          <Image
+          <img
             src={product.image}
             alt={product.name}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-md"
+            className="rounded-md object-cover"
           />
         </div>
         <p className="text-sm text-gray-600 mb-2">{product.description}</p>

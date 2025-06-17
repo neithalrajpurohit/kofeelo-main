@@ -158,7 +158,7 @@ export default function CartPage() {
       <header className="bg-[#F8F1E9] py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center sticky top-0 z-10 border-b border-[#D4B996]/50">
         <Link href="/">
           {/* Use your actual logo */}
-          <Image
+          <img
             src="/assets/logo.png"
             alt="Koffelo Logo"
             width={100}
@@ -257,7 +257,7 @@ export default function CartPage() {
                         className="mt-1 accent-[#8B5E3C] flex-shrink-0"
                       />
                       {/* Image */}
-                      <Image
+                      <img
                         src={item.image}
                         alt={item.name}
                         width={100}
@@ -442,7 +442,7 @@ export default function CartPage() {
                     key={product.id}
                     className="flex items-center space-x-4 py-4 border-b border-gray-200 last:border-b-0"
                   >
-                    <Image
+                    <img
                       src={product.image}
                       alt={product.name}
                       width={70}

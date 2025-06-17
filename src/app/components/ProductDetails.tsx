@@ -113,8 +113,8 @@ interface FeatureIconProps {
 }
 const FeatureIcon: React.FC<FeatureIconProps> = ({ iconSrc, text }) => (
   <div className="flex items-center space-x-2 text-sm text-gray-700">
-    <Image
-      src={iconSrc}
+    <img
+      src={iconSrc as any}
       alt=""
       width={24}
       height={24}
@@ -266,12 +266,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           {/* Logo */}
           <div className="text-xl font-bold text-brand-dark">
-            <Image
+            <img
               src="/assets/logo.png" // Make sure this path is correct
               alt="Koffelo Logo"
               width={120}
               height={40}
-              priority
             />
           </div>
           {/* Nav */}
@@ -449,12 +448,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
           <div className="w-full max-w-md mx-auto relative">
             {/* Display single product image */}
             {quantityImage ? (
-              <Image
-                src={quantityImage}
+              <img
+                src={quantityImage as any}
                 alt={`${product.name} - Primary View`}
                 width={500}
                 height={600}
-                priority
                 className="object-contain w-full h-auto max-h-[65vh] mx-auto"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
@@ -472,7 +470,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       {/* --- End Main Content --- */}
 
       {/* --- Footer --- */}
-      <Image src="/assets/liner.png" alt="liner" height={250} width={1500} />
+      <img src="/assets/liner.png" alt="liner" height={250} width={1500} />
       {/* <footer className="bg-brand-nav py-6 mt-12">
         <div className="container mx-auto px-4 flex flex-wrap justify-center md:justify-between items-center gap-x-8 gap-y-4">
           {footerFeatures.map((feature) => (
