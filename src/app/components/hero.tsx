@@ -77,7 +77,7 @@ export default function Hero() {
       </Slider> */}
       <video
         className="w-full h-full object-cover"
-        src={"/Videos/bannervideo.mp4"}
+        src={"/Videos/bannervideo.webm"}
         autoPlay
         playsInline
         loop

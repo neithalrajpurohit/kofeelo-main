@@ -208,7 +208,7 @@ export default function CoffeeProductsPage() {
                 <div
                   onClick={() => router.push(`/product/${product.id}`)}
                   key={`product-${product.id}-${index}`}
-                  className={`border-2 border-[#42281e]/20 rounded-2xl overflow-hidden relative flex flex-col bg-[#f0e0c8] group w-80 flex-shrink-0 h-[600px] transition-all duration-500 shadow-lg hover:shadow-2xl hover:scale-105 transform-gpu ${
+                  className={`select-none border-2 border-[#42281e]/20 rounded-2xl overflow-hidden relative flex flex-col bg-[#f0e0c8] group w-80 flex-shrink-0 h-[600px] transition-all duration-500 shadow-lg hover:shadow-2xl hover:scale-105 transform-gpu ${
                     isTransitioning ? "blur-[0.5px]" : ""
                   }`}
                   style={{
